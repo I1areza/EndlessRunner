@@ -17,7 +17,7 @@ public class PlayerInputController : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            player.MoveUp();
+            player.TryMoveUp();
         }
         if (Input.GetKeyDown(KeyCode.S))
         {

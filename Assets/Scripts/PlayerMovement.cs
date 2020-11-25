@@ -5,10 +5,16 @@ using UnityEditor;
 using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
-{
-    public float speed;
-    private float verticalStep;
+{ 
+    [SerializeField] private float speed;
+    [SerializeField] private float verticalStep;
     private Vector3 targetPosition;
+    [SerializeField] private float minHeight, MaxHeight; 
+
+    private void Start()
+    {
+        targetPosition = transform.position;
+    }
 
     private void Update()
     {
@@ -18,16 +24,30 @@ public class PlayerMovement : MonoBehaviour
 
     private void SetTargetPosition(float verticalOffset)
     {
-        targetPosition = new Vector3(transform.position.x, transform.position.y+verticalOffset, transform.position.z);
+        targetPosition = new Vector3(targetPosition.x, targetPosition.y+verticalOffset, targetPosition.z);
     }
 
-    public void MoveUp()
+    public bool TryMoveUp()
     {
-        SetTargetPosition(verticalStep);
+        if (targetPosition.y < MaxHeight)
+        {
+            SetTargetPosition(verticalStep);
+            return true;
+        }
+
+        return false;
+
     }
-    public void MoveDown()
+    public bool MoveDown()
     {
-        SetTargetPosition(-verticalStep);
+        if (targetPosition.y > minHeight)
+        {
+            SetTargetPosition(-verticalStep);
+            return true;
+        }
+
+        return false;
+
     }
     
 }
