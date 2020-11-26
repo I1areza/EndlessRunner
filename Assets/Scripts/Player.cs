@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(PlayerMovement))]
-public class PlayerInputController : MonoBehaviour
+public class Player : MonoBehaviour
 {
     private PlayerMovement player;
+
+    [SerializeField] private int health;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,5 +25,10 @@ public class PlayerInputController : MonoBehaviour
         {
             player.MoveDown();
         }
+    }
+
+    public void ApplyDamage(int damage)
+    {
+        health -= damage;
     }
 }
