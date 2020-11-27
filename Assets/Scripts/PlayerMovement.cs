@@ -6,32 +6,32 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 { 
-    [SerializeField] private float speed;
-    [SerializeField] private float verticalStep;
-    private Vector3 targetPosition;
-    [SerializeField] private float minHeight, MaxHeight; 
+    [SerializeField] private float _speed;
+    [SerializeField] private float _verticalStep;
+    private Vector3 _targetPosition;
+    [SerializeField] private float _minHeight, _maxHeight; 
 
     private void Start()
     {
-        targetPosition = transform.position;
+        _targetPosition = transform.position;
     }
 
     private void Update()
     {
-        if(targetPosition != transform.position)
-            transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
+        if(_targetPosition != transform.position)
+            transform.position = Vector3.MoveTowards(transform.position, _targetPosition, _speed * Time.deltaTime);
     }
 
     private void SetTargetPosition(float verticalOffset)
     {
-        targetPosition = new Vector3(targetPosition.x, targetPosition.y+verticalOffset, targetPosition.z);
+        _targetPosition = new Vector3(_targetPosition.x, _targetPosition.y+verticalOffset, _targetPosition.z);
     }
 
     public bool TryMoveUp()
     {
-        if (targetPosition.y < MaxHeight)
+        if (_targetPosition.y < _maxHeight)
         {
-            SetTargetPosition(verticalStep);
+            SetTargetPosition(_verticalStep);
             return true;
         }
 
@@ -40,9 +40,9 @@ public class PlayerMovement : MonoBehaviour
     }
     public bool MoveDown()
     {
-        if (targetPosition.y > minHeight)
+        if (_targetPosition.y > _minHeight)
         {
-            SetTargetPosition(-verticalStep);
+            SetTargetPosition(-_verticalStep);
             return true;
         }
 

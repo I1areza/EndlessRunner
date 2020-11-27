@@ -9,16 +9,16 @@ public class ParallaxEffect : MonoBehaviour
     
     [SerializeField] private float _parralaxEffectSpeed;
     
-    private Transform cameraTransform;
-    private float textureWidth;
+    private Transform _cameraTransform;
+    private float _textureWidth;
     
     void Start()
     {
-        cameraTransform = Camera.main.transform;
+        _cameraTransform = Camera.main.transform;
         Sprite sprite = GetComponent<SpriteRenderer>().sprite;
         Texture2D texture2D = sprite.texture;
-        textureWidth = (texture2D.width / sprite.pixelsPerUnit) * transform.localScale.x;
-        Debug.Log(textureWidth);
+        _textureWidth = (texture2D.width / sprite.pixelsPerUnit) * transform.localScale.x;
+        Debug.Log(_textureWidth);
     }
     private void Update()
     {
@@ -27,11 +27,11 @@ public class ParallaxEffect : MonoBehaviour
     
     void LateUpdate()
     {
-        if (Mathf.Abs(cameraTransform.position.x - transform.position.x) >= textureWidth/2) 
+        if (Mathf.Abs(_cameraTransform.position.x - transform.position.x) >= _textureWidth/2) 
          {
-              float offset = (cameraTransform.position.x - transform.position.x) % textureWidth;
+              float offset = (_cameraTransform.position.x - transform.position.x) % _textureWidth;
              Debug.Log($"Offset {offset}");
-             transform.position = new Vector3(cameraTransform.position.x + offset, transform.position.y);
+             transform.position = new Vector3(_cameraTransform.position.x + offset, transform.position.y);
          }
     } 
 }

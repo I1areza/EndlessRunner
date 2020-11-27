@@ -5,13 +5,13 @@ using UnityEngine;
 [RequireComponent(typeof(PlayerMovement))]
 public class Player : MonoBehaviour
 {
-    private PlayerMovement player;
+    private PlayerMovement _player;
 
-    [SerializeField] private int health;
+    [SerializeField] private int _health;
     // Start is called before the first frame update
     void Start()
     {
-        player = GetComponent<PlayerMovement>();
+        _player = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -19,16 +19,16 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.W))
         {
-            player.TryMoveUp();
+            _player.TryMoveUp();
         }
         if (Input.GetKeyDown(KeyCode.S))
         {
-            player.MoveDown();
+            _player.MoveDown();
         }
     }
 
     public void ApplyDamage(int damage)
     {
-        health -= damage;
+        _health -= damage;
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    [SerializeField] private int damage;
+    [SerializeField] private int _damage;
     // Start is called before the first frame update
     void Start()
     {
@@ -18,11 +18,11 @@ public class Enemy : MonoBehaviour
         
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
         if(other.TryGetComponent(out Player player))
         {
-            player.ApplyDamage(damage);
+            player.ApplyDamage(_damage);
         }
 
         Die();
