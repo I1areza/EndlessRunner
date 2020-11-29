@@ -8,7 +8,7 @@ public class Spawner : ObjectPool
     
     [SerializeField] private float _spawnTimeRange;
     [SerializeField] private Transform[] _spawnPoints;
-    [SerializeField] private GameObject _prefab;
+    [SerializeField] private GameObject[] _prefab;
     
     void Start()
     {

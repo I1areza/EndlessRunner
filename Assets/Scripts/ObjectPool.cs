@@ -16,7 +16,21 @@ public class ObjectPool : MonoBehaviour
         for (int i = 0; i < _objectQty; i++)
         {
             var obj = Instantiate(gameObject, _container.transform);
+            obj.SetActive(false);
             _spawnedObjects.Add(obj);
+            
+        }
+    }
+    
+    protected void Initialize(GameObject[] gameObject)
+    {
+        for (int i = 0; i < _objectQty; i++)
+        {
+            int randIndex = Random.Range(0, gameObject.Length);
+            var obj = Instantiate(gameObject[randIndex], _container.transform);
+            obj.SetActive(false);
+            _spawnedObjects.Add(obj);
+            
         }
     }
 
